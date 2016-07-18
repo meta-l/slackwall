@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # Author: Ian Simons
 # Version 0.9
 # Licence: WTFPL - wtfpl.net
 # thanks to darren.martyn@xiphosrearch.co.uk for python advice and Mike Kemp @ Xiphos for general encouragement.
-# thanks also to @pelicancoder for final spit and polish and general sharpening advice
 
 import subprocess
 import sys
@@ -34,8 +33,7 @@ def openTCPDump():
     #grab local ip address to filter out crap in tcpdump window
     #determine default gateway (and thus adapter id)
     def_gw = netifaces.gateways()['default'][netifaces.AF_INET][1]
-    
-	#get ip address from default adapter
+    #get ip address from default adapter
     address = netifaces.ifaddresses(def_gw)[2][0]['addr']
 
     #check for tcpdump running, if not, spawn new one
@@ -209,3 +207,7 @@ def main():
 
 if __name__=="__main__":
     main()
+
+#Things for this to do:
+#bind tcpdump to ip addresses in ipfile, if more than one, rather than just to eth0 [can be done using src, dst in tcpdumcmd]
+#silence hping output in console if required (can use '2>&1 > /dev/null'; needs combining with subprocess.call correctly
