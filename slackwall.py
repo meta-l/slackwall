@@ -3,6 +3,7 @@
 # Version 0.9
 # Licence: WTFPL - wtfpl.net
 # thanks to darren.martyn@xiphosrearch.co.uk for python advice and Mike Kemp @ Xiphos for general encouragement.
+# thanks also to @pelicancoder for code sanity
 
 import subprocess
 import sys
