@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Author: Ian Simons
-# Version 0.91 - Finally fixed GTK-Warnings. Fuck you GTK-Warnings.
+# Version 0.92 - Finally fixed GTK-Warnings. Fuck you GTK-Warnings. Moved all output over to subprocess.communicate()
 # Licence: WTFPL - wtfpl.net
 # thanks to @infodox for python advice and @clappymonkey for general encouragement.
 # thanks also to @pelicancoder for code sanity
@@ -39,8 +39,9 @@ def openTCPDump():
 
     #check for tcpdump running, if not, spawn new one
     proc = subprocess.Popen(args=['ps', '-e', '-f'], stdout=subprocess.PIPE)
-    output = proc.stdout.read()
-    if address in output:
+    stdout_data = proc.communicate()
+    #output = proc.stdout.read()
+    if address in stdout_data:
         print red + "{!} TCPDump already running in terminal window" + clear
 	pass
     else:
@@ -48,7 +49,7 @@ def openTCPDump():
         tcpdumpcmd = "tcpdump -i eth0 -n host %s" % address
         #print tcpdumpcmd
         pid = subprocess.Popen(args=['gnome-terminal', '--geometry=140x16+20+20', '--profile=tcpdump', '--name=TCPDUMP', '-e', tcpdumpcmd], stderr=subprocess.PIPE)
-        stderr_data = proc.communicate()
+        stderr_data = pid.communicate()
     print green + "{*} Reminder: TCPDump represents ACK as a dot :)" + clear
 
 #cycles through ip address/port arrays and hpings 'em
