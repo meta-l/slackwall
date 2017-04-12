@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # Author: Ian Simons
-# Version 0.9
+# Version 0.91 - Finally fixed GTK-Warnings. Fuck you GTK-Warnings.
 # Licence: WTFPL - wtfpl.net
 # thanks to @infodox for python advice and @clappymonkey for general encouragement.
 # thanks also to @pelicancoder for code sanity
@@ -11,7 +11,7 @@ import argparse
 import time
 import netifaces
 
-__version__ = "0.9"
+__version__ = "0.91"
 
 clear = "\x1b[0m"
 red = "\x1b[1;31m"
@@ -47,7 +47,8 @@ def openTCPDump():
         print green + "{+} TCPDump results will appear in separate terminal window" + clear
         tcpdumpcmd = "tcpdump -i eth0 -n host %s" % address
         #print tcpdumpcmd
-        pid = subprocess.Popen(args=['gnome-terminal', '--profile=tcpdump', '--geometry=140x16+20+20', '--name=TCPDUMP', '-e', tcpdumpcmd])
+        pid = subprocess.Popen(args=['gnome-terminal', '--geometry=140x16+20+20', '--profile=tcpdump', '--name=TCPDUMP', '-e', tcpdumpcmd], stderr=subprocess.PIPE)
+        stderr_data = proc.communicate()
     print green + "{*} Reminder: TCPDump represents ACK as a dot :)" + clear
 
 #cycles through ip address/port arrays and hpings 'em
