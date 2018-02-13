@@ -11,7 +11,7 @@ import argparse
 import time
 import netifaces
 
-__version__ = "0.91"
+__version__ = "0.92"
 
 clear = "\x1b[0m"
 red = "\x1b[1;31m"
