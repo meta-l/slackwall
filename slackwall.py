@@ -2,7 +2,7 @@
 # Author: Ian Simons
 # Version 0.92 - Finally fixed GTK-Warnings. Fuck you GTK-Warnings. Moved all output over to subprocess.communicate()
 # Licence: WTFPL - wtfpl.net
-# thanks to @infodox for python advice and @clappymonkey for general encouragement.
+# thanks to @info_dox for python advice and @clappymonkey for general encouragement.
 # thanks also to @pelicancoder for code sanity
 
 import subprocess
